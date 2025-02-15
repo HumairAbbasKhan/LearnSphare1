@@ -54,6 +54,7 @@ const Header = () => {
               <button
                 onClick={() => {
                   localStorage.removeItem("user");
+                  localStorage.removeItem("token");
                   setIsLoggedIn(false);
                 }}
                 className="border border-white px-6 py-2 rounded-lg transition duration-200 hover:bg-red-500 font-bold"

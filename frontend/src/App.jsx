@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Purchases from "./components/Purchases";
 import Courses from "./components/Courses";
-import BuyPage from "./components/BuyPage";
+import BuyPage from "./components/Buy";
 import Settings from "./components/Settings";
 const App = () => {
   return (

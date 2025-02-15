@@ -2,7 +2,8 @@ import Course from "../models/courseModel.js";
 import Purchase from "../models/purchaseModel.js";
 import User from "../models/userModel.js";
 import { v2 as cloudinary } from "cloudinary";
-
+import Stripe from "stripe";
+import config from "../config.js";
 export const createCourse = async (req, res) => {
   const { title, description, price } = req.body;
   const adminId = req.adminId;
@@ -153,6 +154,8 @@ export const deleteCourse = async (req, res) => {
   }
 };
 
+const stripe = new Stripe(config.STRIPE_SECRET_KEY);
+
 export const buyCourse = async (req, res) => {
   const { userId } = req;
   const { courseId } = req.params;
@@ -162,33 +165,38 @@ export const buyCourse = async (req, res) => {
     if (!course) {
       return res
         .status(404)
-        .json({ success: false, message: "Course not found" });
-    }
-
-    const user = await User.findById(userId);
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+        .json({ success: false, error: "Course not found" });
     }
 
     const existingPurchase = await Purchase.findOne({ userId, courseId });
     if (existingPurchase) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Course already purchased" });
+      return res.status(400).json({
+        success: false,
+        error: "User has already purchased this course",
+      });
     }
+    const amountInCents = course.price * 100;
 
-    const purchase = new Purchase({ userId, courseId });
-    await purchase.save();
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amountInCents,
+      currency: "usd",
+      payment_method_types: ["card"],
+    });
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: "Course purchased successfully",
-      purchase,
+      course: {
+        _id: course._id,
+        title: course.title,
+        price: course.price,
+        description: course.description,
+        image: course.image ? course.image.url : null,
+      },
+      clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
-    console.error("Error in course buying:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    console.error("Stripe Payment Error:", error);
+    res.status(500).json({ success: false, error: error.message });
   }
 };

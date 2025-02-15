@@ -105,10 +105,15 @@ const Home = () => {
                   </div>
 
                   <div className="mt-4">
-                    <h2 className="text-lg font-semibold">{course.title}</h2>
-                    <button className="mt-2 bg-orange-500 hover:bg-orange-600 px-2 py-1 rounded-lg text-white font-semibold transition">
+                    <h2 className="text-lg font-semibold mb-2">
+                      {course.title}
+                    </h2>
+                    <Link
+                      to={`/buy/${course._id}`}
+                      className=" bg-orange-500 hover:bg-orange-600 px-2 py-2 rounded-lg text-white font-semibold transition"
+                    >
                       Enroll Now
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

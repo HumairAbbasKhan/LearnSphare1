@@ -21,6 +21,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/login");
   };

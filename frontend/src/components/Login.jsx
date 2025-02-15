@@ -36,8 +36,10 @@ const Login = () => {
         throw new Error(data.message || "Login failed!");
       }
 
-      if (data.token) {
-        localStorage.setItem("user", data.token);
+      if (data.success && data.token) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+
         toast.success("Login successful!");
         navigate("/");
       } else {

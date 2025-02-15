@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
 
@@ -11,38 +10,28 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 function Purchases() {
   const [purchases, setPurchases] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const getToken = () => {
-    try {
-      const user = localStorage.getItem("user");
-      if (!user) return null;
-      if (user.startsWith("ey")) return user;
-      const parsedUser = JSON.parse(user);
-      return parsedUser?.token || null;
-    } catch (error) {
-      console.error("Error parsing localStorage user:", error);
-      localStorage.removeItem("user");
-      return null;
-    }
-  };
-
-  const token = getToken();
-  console.log("Token being sent:", token);
+  let user = null;
+  let token = null;
+  try {
+    user = JSON.parse(localStorage.getItem("user"));
+    token = localStorage.getItem("token");
+  } catch (error) {
+    console.error("Failed to parse user data from localStorage:", error);
+  }
 
   useEffect(() => {
     if (!token) {
-      setIsLoggedIn(false);
-      toast.error("First, log in to continue!");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      toast.error("Please log in to continue!");
+      setTimeout(() => navigate("/login"), 2000);
     } else {
       setIsLoggedIn(true);
     }
+    setIsLoading(false);
   }, [token, navigate]);
 
   useEffect(() => {
@@ -60,6 +49,7 @@ function Purchases() {
         setPurchases(response.data.courses);
       } catch (error) {
         console.error("Error fetching purchases:", error);
+        toast.error("Failed to fetch purchases.");
       }
     };
 
@@ -73,6 +63,7 @@ function Purchases() {
       });
       toast.success("Logged out successfully!");
       localStorage.removeItem("user");
+      localStorage.removeItem("token");
       navigate("/login");
       setIsLoggedIn(false);
     } catch (error) {
@@ -85,8 +76,12 @@ function Purchases() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  if (isLoading) {
+    return <p className="text-center text-gray-400 text-lg">Loading...</p>;
+  }
+
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
@@ -95,7 +90,7 @@ function Purchases() {
       />
 
       <div
-        className={`bg-gradient-to-r from-black to-blue-950 flex-1 p-8 transition-all duration-300 ${
+        className={`bg-gradient-to-r from-black to-blue-950 flex-1 p-8 h-full min-h-screen transition-all duration-300 ${
           isSidebarOpen ? "ml-64" : "ml-0 md:ml-64"
         }`}
       >
@@ -103,16 +98,12 @@ function Purchases() {
           My Purchases
         </h1>
 
-        {errorMessage && (
-          <div className="text-red-500 text-center mb-4">{errorMessage}</div>
-        )}
-
         {purchases.length > 0 ? (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {purchases.map((purchase, index) => (
               <div
                 key={index}
-                className="border border-gray-700 rounded-lg bg-gray-900 p-5 shadow-lg hover:shadow-2xl transition duration-300"
+                className="border border-gray-700 rounded-lg bg-gradient-to-b from-gray-900 to-blue-950 p-5 shadow-lg hover:shadow-2xl transition duration-300"
               >
                 <img
                   className="rounded-md w-full h-40 object-cover mb-4"
