@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LearnSphare
 
 ### Course Selling Platform (MERN Stack)
@@ -36,6 +35,7 @@ This is a full-stack web application built with the MERN stack (MongoDB, Express
 #### Image Storage: Cloudinary
 
 ### Installation & Setup
+
 =======
 Course Selling Platform (MERN Stack)
 
@@ -72,11 +72,12 @@ Payment Integration: Stripe
 Image Storage: Cloudinary
 
 Installation & Setup
->>>>>>> 90087d0 (Initial commit)
+
+> > > > > > > 90087d0 (Initial commit)
 
 Clone the repository:
 
-git clone https://github.com/yourusername/course-platform.git
+git clone https://github.com/HumairAbbasKhan/LearnSphare1
 cd course-platform
 
 Install dependencies for the frontend:
@@ -125,17 +126,20 @@ git commit -m "Updated README with Stripe and Cloudinary setup"
 git push origin main
 
 <<<<<<< HEAD
+
 ## Contributing
 
 Feel free to fork this repository and submit pull requests with improvements or bug fixes.
 
 ## License
+
 =======
 Contributing
 
 Feel free to fork this repository and submit pull requests with improvements or bug fixes.
 
 License
->>>>>>> 90087d0 (Initial commit)
+
+> > > > > > > 90087d0 (Initial commit)
 
 This project is licensed under the MIT License.
