@@ -8,7 +8,7 @@ This is a full-stack web application built with the MERN stack (MongoDB, Express
 
 ## website is live on:
 
-[learnSphare](https://learn-sphare1-rpk1.vercel.app/)
+[learnSphare](https://learn-sphare1-rpk1.vercel.app/) or https://learn-sphare1-rpk1.vercel.app/
 
 ## Features
 
