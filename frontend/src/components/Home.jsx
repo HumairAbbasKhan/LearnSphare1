@@ -102,7 +102,7 @@ const Home = () => {
                     <img
                       src={course.image.url}
                       alt={course.title}
-                      className="w-4/5 sm:w-80% h-4/7 object-cover rounded-xl"
+                      className="w-4/5 sm:w-80% sm:70% h-4/7 object-cover rounded-xl"
                     />
                   </div>
 
