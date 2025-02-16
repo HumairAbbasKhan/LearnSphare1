@@ -11,8 +11,7 @@ import {
   IoChatbubbles,
   IoTrash,
 } from "react-icons/io5";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { BACKEND_URL } from "../utils/utils";
 
 const Settings = () => {
   const navigate = useNavigate();

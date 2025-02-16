@@ -4,8 +4,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { BACKEND_URL } from "../utils/utils";
 
 function Courses() {
   const [courses, setCourses] = useState([]);

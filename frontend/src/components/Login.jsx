@@ -3,8 +3,7 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { BACKEND_URL } from "../utils/utils";
 
 const Login = () => {
   const [formData, setFormData] = useState({

@@ -2,11 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { BACKEND_URL } from "../utils/utils";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function Buy() {
   const { courseId } = useParams();
