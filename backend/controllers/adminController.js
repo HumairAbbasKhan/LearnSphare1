@@ -1,6 +1,6 @@
 import Admin from "../models/adminModel.js";
 import Purchase from "../models/purchaseModel.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 
