@@ -65,7 +65,7 @@ const Home = () => {
     <div className="bg-gradient-to-r from-black to-blue-950 min-h-screen text-white">
       <Header />
       <div className="flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-4xl md:text-3xl sm:text-2xl font-bold text-orange-500 mt-4 mb-3">
+        <h1 className="text-4xl md:text-3xl sm:text-xl font-bold text-orange-500 mt-6 mb-3">
           LearnSphere
         </h1>
         <h2 className="text-lg md:text-base sm:text-sm max-w-2xl leading-relaxed">
