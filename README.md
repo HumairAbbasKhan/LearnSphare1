@@ -12,7 +12,7 @@ This is a full-stack web application built with the MERN stack (MongoDB, Express
 
 ## Features
 
-#### User authentication (Signup/Login)
+##### User authentication (Signup/Login)
 
 #### Browse and search for courses
 
