@@ -6,6 +6,10 @@
 
 This is a full-stack web application built with the MERN stack (MongoDB, Express.js, React, Node.js) where users can buy programming courses like Java, CSS, C, and other languages.
 
+## website is live on:
+
+[live](https://learn-sphare1-rpk1.vercel.app/)
+
 ## Features
 
 #### User authentication (Signup/Login)
