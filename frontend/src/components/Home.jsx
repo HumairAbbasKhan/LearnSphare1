@@ -27,35 +27,29 @@ const Home = () => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 2000,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          infinite: true,
-          dots: true,
+          arrows: true,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
         },
       },
     ],
@@ -65,7 +59,7 @@ const Home = () => {
     <div className="bg-gradient-to-r from-black to-blue-950 min-h-screen text-white">
       <Header />
       <div className="flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-4xl md:text-3xl sm:text-xl font-bold text-orange-500 mt-6 mb-3">
+        <h1 className="text-4xl md:text-3xl sm:text-sm font-bold text-orange-500 mt-6 mb-3">
           LearnSphere
         </h1>
         <h2 className="text-lg md:text-base sm:text-sm max-w-2xl leading-relaxed">
@@ -88,7 +82,7 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="my-7 max-w-6xl mx-auto">
+      <section className="my-7 max-w-6xl mx-auto px-4">
         {error ? (
           <p className="text-red-500 text-center text-sm md:text-base">
             {error}
@@ -96,13 +90,13 @@ const Home = () => {
         ) : (
           <Slider {...settings}>
             {courses.map((course) => (
-              <div key={course._id} className="p-1">
-                <div className="rounded-lg p-2 text-center">
-                  <div className="h-24 sm:h-20 flex justify-center items-center overflow-hidden hover:scale-110 transition">
+              <div key={course._id} className="p-2">
+                <div className=" rounded-lg p-4 text-center  hover:shadow-xl transition">
+                  <div className="flex justify-center items-center overflow-hidden hover:scale-105 transition duration-300">
                     <img
                       src={course.image.url}
                       alt={course.title}
-                      className="w-4/5 sm:w-80% sm:70% h-4/7 object-cover rounded-xl"
+                      className="w-full object-cover rounded-xl h-36 md:h-40 sm:h-32"
                     />
                   </div>
 
@@ -112,7 +106,7 @@ const Home = () => {
                     </h2>
                     <Link
                       to={`/buy/${course._id}`}
-                      className="bg-orange-500 hover:bg-orange-600 px-2 py-2 rounded-lg text-white font-semibold transition"
+                      className="bg-orange-500 hover:bg-orange-600 px-4 py-2  rounded-lg text-white font-semibold transition"
                     >
                       Enroll Now
                     </Link>
