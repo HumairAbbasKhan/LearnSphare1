@@ -1,1 +1,1 @@
-export const BACKEND_URL = "http://localhost:5000";
+export const BACKEND_URL = "https://learn-sphare1.vercel.app";
